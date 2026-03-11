@@ -41,5 +41,5 @@ jobs:
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ vars.APP_SERVICE_NAME }}
-          images: ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          app-name: ${{ env.APP_NAME }}
+          images: ${{ env.APP_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
