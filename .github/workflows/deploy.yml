@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  REGISTRY: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io
+  REGISTRY: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}
   IMAGE_NAME: zavastorefront
   APP_NAME: ${{ vars.AZURE_APP_SERVICE_NAME }}
 
