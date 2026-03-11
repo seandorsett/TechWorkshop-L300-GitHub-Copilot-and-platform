@@ -1,0 +1,17 @@
+using './main.bicep'
+
+param location = 'westus3'
+param environment = 'dev'
+param appName = 'zavastorefront'
+param containerImage = 'zavastorefront:latest'
+param acbAccountName = 'zavas${uniqueString(resourceGroup().id)}'
+param appServicePlanName = 'plan-${appName}-${environment}'
+param appServiceName = 'app-${appName}-${environment}'
+param appInsightsName = 'ai-${appName}-${environment}'
+param logAnalyticsName = 'log-${appName}-${environment}'
+param foundryName = 'aif-${appName}-${environment}'
+param tags = {
+  environment: environment
+  project: 'zavastorefront'
+  createdBy: 'azd'
+}
