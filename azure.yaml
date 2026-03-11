@@ -1,0 +1,22 @@
+version: 1.0
+name: zava-storefront
+metadata:
+  template: zava-storefront-template
+services:
+  web:
+    project: src
+    language: csharp
+    host: appservice
+    module: app-service
+infra:
+  template: bicep
+  path: infra
+  parameters:
+    location: westus3
+    environment: dev
+    appName: zavastorefront
+triggers:
+  - path: src
+    handler: build
+  - path: infra
+    handler: provision
