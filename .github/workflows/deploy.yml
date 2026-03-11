@@ -13,7 +13,9 @@ permissions:
   contents: read
 
 env:
+  REGISTRY: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io
   IMAGE_NAME: zavastorefront
+  APP_NAME: ${{ vars.AZURE_APP_SERVICE_NAME }}
 
 jobs:
   build-and-deploy:
@@ -31,10 +33,10 @@ jobs:
 
       - name: Build and push container image
         run: |
-          docker build -t ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-                       -t ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:latest \
+          docker build -t ${{ env.REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+                       -t ${{ env.REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }}:latest \
                        ./src
-          docker push ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }} --all-tags
+          docker push ${{ env.REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }} --all-tags
 
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
